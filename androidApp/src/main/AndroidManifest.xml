@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.andigeeky.tripmate.android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--  TODO We should change usesCleartextTraffic before release-->
     <application
         android:allowBackup="false"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity

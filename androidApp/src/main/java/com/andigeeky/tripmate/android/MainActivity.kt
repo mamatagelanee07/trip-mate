@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.andigeeky.tripmate.Greeting
 import android.widget.TextView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
-fun greet(): String {
+suspend fun greet(): String {
     return Greeting().greeting()
 }
 
@@ -14,7 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        MainScope().launch {
+            val tv: TextView = findViewById(R.id.text_view)
+            tv.text = greet()
+        }
     }
 }

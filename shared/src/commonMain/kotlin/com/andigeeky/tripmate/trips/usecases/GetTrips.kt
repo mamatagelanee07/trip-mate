@@ -1,13 +1,14 @@
 package com.andigeeky.tripmate.trips.usecases
 
-import com.andigeeky.tripmate.apolloClient
 import com.andigeeky.tripmate.graphql.GetAllTripsQuery
 import com.andigeeky.tripmate.trips.model.Trip
 import com.apollographql.apollo3.ApolloClient
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class GetTrips {
+class GetTrips : KoinComponent{
+    private val client: ApolloClient by inject()
     suspend operator fun invoke(): List<Trip> {
-        val client: ApolloClient = apolloClient()
         return client.query(GetAllTripsQuery()).execute().data?.trips?.map {
             Trip(
                 id = it?.id!!,

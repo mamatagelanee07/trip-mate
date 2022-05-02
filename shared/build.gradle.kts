@@ -30,6 +30,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("com.apollographql.apollo3:apollo-runtime:3.2.2")
+                implementation("io.insert-koin:koin-core:3.1.6")
             }
         }
         val commonTest by getting {

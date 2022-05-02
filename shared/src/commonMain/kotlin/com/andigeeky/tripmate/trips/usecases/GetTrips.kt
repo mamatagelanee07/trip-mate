@@ -6,7 +6,7 @@ import com.andigeeky.tripmate.trips.model.Trip
 import com.apollographql.apollo3.ApolloClient
 
 class GetTrips {
-    suspend fun getTrips(): List<Trip> {
+    suspend operator fun invoke(): List<Trip> {
         val client: ApolloClient = apolloClient()
         return client.query(GetAllTripsQuery()).execute().data?.trips?.map {
             Trip(

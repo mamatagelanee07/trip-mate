@@ -6,13 +6,13 @@ struct ContentView: View {
     @State var trips = "Loading..."
     
     func load() {
-        tripsCall.getTrips { result, error in
+        tripsCall.invoke(completionHandler: { result, error in
             if let result = result {
                 self.trips = result.description
             } else if let error = error {
                 trips = "Error: \(error)"
             }
-        }
+        })
     }
     
     var body: some View {

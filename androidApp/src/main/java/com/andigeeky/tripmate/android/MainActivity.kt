@@ -9,7 +9,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 suspend fun list(): List<Trip> {
-    return GetTrips().getTrips()
+    return GetTrips().invoke()
 }
 
 class MainActivity : AppCompatActivity() {

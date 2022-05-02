@@ -1,0 +1,8 @@
+query GetAllTrips {
+    trips {
+        id
+        name
+        startDate
+        endDate
+    }
+}

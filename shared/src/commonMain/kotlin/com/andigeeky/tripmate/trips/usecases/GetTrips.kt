@@ -1,16 +1,20 @@
 package com.andigeeky.tripmate.trips.usecases
 
+import com.andigeeky.tripmate.apolloClient
+import com.andigeeky.tripmate.graphql.GetAllTripsQuery
 import com.andigeeky.tripmate.trips.model.Trip
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import com.apollographql.apollo3.ApolloClient
 
-class GetTrips(private val client: HttpClient) {
-    suspend operator fun invoke(): List<Trip> {
-        return client.get("http://0.0.0.0:8080/trip") {
-            method = HttpMethod.Get
-            contentType(ContentType.Application.Json)
-        }.body()
+class GetTrips {
+    suspend fun getTrips(): List<Trip> {
+        val client: ApolloClient = apolloClient()
+        return client.query(GetAllTripsQuery()).execute().data?.trips?.map {
+            Trip(
+                id = it?.id!!,
+                name = it.name,
+                startDate = it.startDate,
+                endDate = it.endDate
+            )
+        }.orEmpty()
     }
 }

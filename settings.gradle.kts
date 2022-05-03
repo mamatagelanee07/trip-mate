@@ -9,3 +9,4 @@ pluginManagement {
 rootProject.name = "TripMate"
 include(":androidApp")
 include(":shared")
+include(":graphql-client")
